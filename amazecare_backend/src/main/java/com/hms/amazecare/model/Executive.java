@@ -1,6 +1,7 @@
 package com.hms.amazecare.model;
 
 
+import com.hms.amazecare.enums.ExecutiveDesignation;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,8 +26,9 @@ public class Executive {
     @Column(name = "employee_id", nullable = false, unique = true, length = 50)
     private String employeeId;
 
-    @Column(nullable = false, length = 100)
-    private String designation;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private ExecutiveDesignation designation;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

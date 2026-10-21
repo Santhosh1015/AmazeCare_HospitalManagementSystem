@@ -1,6 +1,8 @@
 package com.hms.amazecare.mapper;
 
 import com.hms.amazecare.dto.request.ExecutiveDto;
+import com.hms.amazecare.dto.response.ExecutiveResDto;
+import com.hms.amazecare.enums.ExecutiveDesignation;
 import com.hms.amazecare.model.Executive;
 import com.hms.amazecare.service.ExecutiveService;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +22,13 @@ public class ExecutiveMapper {
         executive.setEmployeeId(request.employeeId());
         executive.setDesignation(request.designation());
         return executive;
+    }
+
+    public static ExecutiveResDto convertEntityToDto(Executive saved) {
+        return new ExecutiveResDto(
+                saved.getFirstName()+" "+ saved.getLastName(),
+                saved.getEmployeeId(),
+                saved.getDesignation()
+        );
     }
 }

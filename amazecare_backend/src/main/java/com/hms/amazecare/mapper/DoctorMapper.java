@@ -1,6 +1,7 @@
 package com.hms.amazecare.mapper;
 
 import com.hms.amazecare.dto.request.DoctorDto;
+import com.hms.amazecare.dto.response.DoctorProfileResDto;
 import com.hms.amazecare.model.Doctor;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Component;
@@ -19,4 +20,17 @@ public class DoctorMapper {
         doctor.setSpecialization(doctorDto.specialization());
         return doctor;
     }
+    public static DoctorProfileResDto convertEntityToDto(Doctor doctor){
+        return new DoctorProfileResDto(
+                doctor.getId(),
+                doctor.getFirstName(),
+                doctor.getLastName(),
+                doctor.getSpecialization(),
+                doctor.getQualification(),
+                doctor.getDesignation(),
+                doctor.getLicenseNumber(),
+                doctor.getExperienceYears()
+        );
+    }
+
 }

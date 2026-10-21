@@ -1,5 +1,6 @@
 package com.hms.amazecare.model;
 
+import com.hms.amazecare.enums.DoctorDesignation;
 import com.hms.amazecare.enums.Specialization;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,8 +30,9 @@ public class Doctor {
     @Column(nullable = false, length = 255)
     private String qualification;
 
-    @Column(length = 100)
-    private String designation;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 50)
+    private DoctorDesignation designation;
 
     @Column(name = "license_number", unique = true, length = 50)
     private String licenseNumber;

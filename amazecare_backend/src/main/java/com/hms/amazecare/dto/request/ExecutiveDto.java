@@ -1,8 +1,7 @@
 package com.hms.amazecare.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.hms.amazecare.enums.ExecutiveDesignation;
+import jakarta.validation.constraints.*;
 
 public record ExecutiveDto(
 
@@ -11,19 +10,24 @@ public record ExecutiveDto(
         String email,
 
         @NotBlank(message = "Password is required")
-        @Size(min = 8, max = 20,message = "Password must be between 8 and 20 characters")
+        @Pattern(
+                regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$",
+                message = "Password must contain at least one letter, one digit, and 8 characters"
+        )
         String password,
 
         @NotBlank(message = "First name is required")
+        @NotNull(message = "First name is required")
         String firstName,
 
         @NotBlank(message = "Last name is required")
+        @NotNull(message = "Last name is required")
         String lastName,
 
-        @NotBlank(message = "Employee ID is required")
+        @NotBlank(message = "employee ID is required")
         String employeeId,
 
         @NotBlank(message = "Designation is required")
-        String designation
+        ExecutiveDesignation designation
 ) {
 }

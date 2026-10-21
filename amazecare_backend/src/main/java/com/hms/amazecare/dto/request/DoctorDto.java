@@ -1,10 +1,8 @@
 package com.hms.amazecare.dto.request;
 
+import com.hms.amazecare.enums.DoctorDesignation;
 import com.hms.amazecare.enums.Specialization;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public record DoctorDto(
         @NotBlank(message = "First name is required")
@@ -13,17 +11,20 @@ public record DoctorDto(
         @NotBlank(message = "Last name is required")
         String lastName,
 
-        @NotNull(message = "Specialization is required")
+        @NotNull(message = "specialization is required")
         Specialization specialization,
 
-        @NotBlank(message = "Qualification is required")
+        @NotBlank(message = "qualification is required")
         String qualification,
 
-        String designation,
+        @NotNull(message = "designation is required")
+        DoctorDesignation designation,
 
+        @NotBlank(message = "licenseNumber is required")
         String licenseNumber,
 
-        @NotNull(message = "Experience is required")
+        @NotNull(message = "experience is required")
+        @Positive
         Integer experienceYears,
 
         @NotBlank(message = "Email is required")
@@ -31,7 +32,10 @@ public record DoctorDto(
         String email,
 
         @NotBlank(message = "Password is required")
-        @Size(min = 8, max = 20,message = "Password must be between 8 and 20 characters")
+        @Pattern(
+                regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$",
+                message = "Password must contain at least one letter, one digit, and 8 characters"
+        )
         String password
 ) {
 }

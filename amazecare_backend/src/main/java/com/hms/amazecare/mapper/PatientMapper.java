@@ -1,6 +1,8 @@
 package com.hms.amazecare.mapper;
 
 import com.hms.amazecare.dto.request.PatientDto;
+import com.hms.amazecare.dto.request.PatientUpdateDto;
+import com.hms.amazecare.dto.response.PatientResDto;
 import com.hms.amazecare.model.Patient;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Component;
@@ -17,5 +19,24 @@ public class PatientMapper {
         patient.setPhone(patientDto.phone());
         patient.setDateOfBirth(patientDto.dateOfBirth());
         return patient;
+    }
+
+    public static void convertUpdateDtoToEntity(PatientUpdateDto patientUpdateDto, Patient patient) {
+        patient.setAddress(patientUpdateDto.address());
+        patient.setFirstName(patientUpdateDto.firstName());
+        patient.setLastName(patientUpdateDto.lastName());
+        patient.setPhone(patientUpdateDto.phone());
+        patient.setDateOfBirth(patientUpdateDto.dateOfBirth());
+
+    }
+
+    public static PatientResDto createPatientResDto(Patient patient) {
+        return new PatientResDto(
+                patient.getFirstName(),
+                patient.getLastName(),
+                patient.getPhone(),
+                patient.getAddress(),
+                patient.getDateOfBirth()
+        );
     }
 }

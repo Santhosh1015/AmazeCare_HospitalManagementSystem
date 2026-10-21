@@ -1,6 +1,7 @@
 package com.hms.amazecare.model;
 
 import com.hms.amazecare.enums.AppointmentStatus;
+import com.hms.amazecare.enums.VisitType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,18 +26,19 @@ public class Appointment {
     @Column(name = "appointment_time", nullable = false)
     private LocalTime appointmentTime;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "visit_type", length = 50)
-    private String visitType;
+    private VisitType visitType;
 
     @Column(length = 500)
     private String reason;
 
+    @Column(length = 500, name = "cancel_reason")
+    private String cancelReason;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private AppointmentStatus status = AppointmentStatus.REQUESTED;
-
-    @Column(name = "assigned_at")
-    private LocalDateTime assignedAt;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -46,7 +48,7 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "updated_by")
-    private String updatedBy;
+    private User updatedBy;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)

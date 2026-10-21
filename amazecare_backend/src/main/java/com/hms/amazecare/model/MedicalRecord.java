@@ -27,9 +27,6 @@ public class MedicalRecord {
     @Column(columnDefinition = "TEXT")
     private String diagnosis;
 
-    @Column(name = "recommended_tests", length = 500)
-    private String recommendedTests;
-
     @Column(name ="treatment_plan", columnDefinition = "TEXT")
     private String treatmentPlan;
 

@@ -59,4 +59,8 @@ public class Patient {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
+    @PreUpdate
+    protected void onUpdate(){
+        updatedAt = LocalDateTime.now();
+    }
 }

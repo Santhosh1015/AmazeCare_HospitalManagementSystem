@@ -9,20 +9,9 @@ public record AdminDto(
         @Email(message = "Please provide a valid email address")
         String email,
 
-        @NotBlank(message = "Password is required")
+        @NotBlank(message = "password is required")
         @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters")
-        String password,
+        String password
 
-        @NotBlank(message = "First name is required")
-        String firstName,
-
-        @NotBlank(message = "First name is required")
-        String lastName,
-
-        @NotBlank(message = "Employee ID is required")
-        String employeeId,
-
-        @NotBlank(message = "Designation is required")
-        String designation
 ) {
 }

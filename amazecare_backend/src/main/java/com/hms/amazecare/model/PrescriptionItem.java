@@ -20,7 +20,10 @@ public class PrescriptionItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50)
+    @Column(nullable = false)
+    private String medicineName;
+
+    @Column(length = 50, nullable = false)
     private String dosage;
 
     @Enumerated(EnumType.STRING)
@@ -31,7 +34,7 @@ public class PrescriptionItem {
     @Column(name = "food_timing", nullable = false, length = 5)
     private FoodTiming foodTiming;
 
-    @Column(name = "duration_days")
+    @Column(name = "duration_days", nullable = false)
     private int durationDays;
 
     @Column(columnDefinition = "TEXT")
