@@ -1,6 +1,7 @@
 package com.hms.amazecare.service;
 
 import com.hms.amazecare.dto.request.AdminDto;
+import com.hms.amazecare.dto.response.UserDetailsDto;
 import com.hms.amazecare.enums.Role;
 import com.hms.amazecare.enums.UserStatus;
 import com.hms.amazecare.exception.ResourceNotFoundException;
@@ -36,5 +37,14 @@ public class UserService {
         //softly delete the user with status
         user.setStatus(UserStatus.INACTIVE);
         userRepository.save(user);
+    }
+
+    public UserDetailsDto getUserDetails(String userEmail) {
+        User user = userRepository.findByEmail(userEmail);
+        return new UserDetailsDto(
+                user.getEmail(),
+                user.getRole(),
+                user.getStatus()
+        );
     }
 }

@@ -32,11 +32,13 @@ public class PatientMapper {
 
     public static PatientResDto createPatientResDto(Patient patient) {
         return new PatientResDto(
+                patient.getId(),
                 patient.getFirstName(),
                 patient.getLastName(),
                 patient.getPhone(),
                 patient.getAddress(),
-                patient.getDateOfBirth()
+                patient.getDateOfBirth(),
+                patient.getGender()
         );
     }
 }

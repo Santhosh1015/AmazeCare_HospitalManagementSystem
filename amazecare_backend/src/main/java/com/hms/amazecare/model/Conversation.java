@@ -21,6 +21,10 @@ public class Conversation{
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    // moved forward on every new message; used to sort the conversation list
+    @Column(name = "last_message_at", nullable = false)
+    private LocalDateTime lastMessageAt;
+
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
@@ -31,7 +35,12 @@ public class Conversation{
 
     @PrePersist
     protected void onCreate() {
+
         createdAt = LocalDateTime.now();
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        lastMessageAt = LocalDateTime.now();
     }
 
 }

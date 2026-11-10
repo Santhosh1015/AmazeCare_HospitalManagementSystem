@@ -1,6 +1,5 @@
 package com.hms.amazecare.dto.request;
 
-import com.hms.amazecare.enums.Gender;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

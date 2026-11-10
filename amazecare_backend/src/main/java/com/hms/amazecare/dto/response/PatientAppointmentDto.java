@@ -13,6 +13,7 @@ import java.time.LocalTime;
 
 public record PatientAppointmentDto(
         Long appointmentId,
+        Long doctorId,
         String doctorFirstName,
         String doctorLastName,
         Specialization specialization,

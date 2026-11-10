@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class DoctorAvailabilityController {
     private final DoctorAvailabilityService availabilityService;
 

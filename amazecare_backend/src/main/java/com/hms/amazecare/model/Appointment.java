@@ -23,7 +23,7 @@ public class Appointment {
     @Column(name = "appointment_date", nullable = false)
     private LocalDate appointmentDate;
 
-    @Column(name = "appointment_time", nullable = false)
+    @Column(name = "appointment_time")
     private LocalTime appointmentTime;
 
     @Enumerated(EnumType.STRING)

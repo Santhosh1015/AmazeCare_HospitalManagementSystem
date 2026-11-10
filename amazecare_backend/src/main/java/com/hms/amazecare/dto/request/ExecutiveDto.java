@@ -27,7 +27,7 @@ public record ExecutiveDto(
         @NotBlank(message = "employee ID is required")
         String employeeId,
 
-        @NotBlank(message = "Designation is required")
+        @NotNull(message = "Designation is required")
         ExecutiveDesignation designation
 ) {
 }

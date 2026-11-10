@@ -26,6 +26,7 @@ public class ExecutiveMapper {
 
     public static ExecutiveResDto convertEntityToDto(Executive saved) {
         return new ExecutiveResDto(
+                saved.getId(),
                 saved.getFirstName()+" "+ saved.getLastName(),
                 saved.getEmployeeId(),
                 saved.getDesignation()

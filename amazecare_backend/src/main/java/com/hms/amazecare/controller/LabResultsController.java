@@ -8,6 +8,7 @@ import com.hms.amazecare.service.LabResultsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -34,4 +35,12 @@ public class LabResultsController {
         return labResultsService.updateLabResults(principal.getName(), labResultUpdateDto , labResultId);
 
     }
+
+    @PostMapping("/api/v1/upload/lab-results/{labResultId}")
+    public void upload(@RequestParam("file") MultipartFile file,
+                       Principal principal,
+                       @PathVariable Long recordId){
+        labResultsService.upload(principal.getName(), file , recordId);
+    }
+
 }

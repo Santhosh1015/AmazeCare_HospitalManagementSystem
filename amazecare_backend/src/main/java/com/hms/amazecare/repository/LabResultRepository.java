@@ -22,4 +22,11 @@ public interface LabResultRepository extends JpaRepository<LabResult, Long> {
     List<LabResultsDto> getLabResultsByMedicalRecordId(Long recordId,
                                                        LabTestName testName,
                                                        LabTestStatus status);
+
+    @Query("""
+            select l
+            from LabResult l
+            where l.medicalRecord.id = ?1
+            """)
+    List<LabResult> fetchByRecordId(Long id);
 }

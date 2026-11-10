@@ -13,7 +13,7 @@ public record ConsultationResDto(
     String doctorName,
     LocalDate appointmentDate,
     String diagnosis,
-    List<LabTestsResDto> lanTests,
+    List<LabTestsResDto> labTests,
     PrescriptionResDto prescriptionResDto
 ) {
 }

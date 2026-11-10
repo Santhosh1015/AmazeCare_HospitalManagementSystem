@@ -9,6 +9,7 @@ import java.time.LocalTime;
 
 public record BookingRespDto(
         Long appointmentId,
+        Long doctorId,
         String doctorFirstName,
         String doctorLastName,
         Specialization specialization,

@@ -1,9 +1,6 @@
 package com.hms.amazecare.mapper;
 
-import com.hms.amazecare.dto.response.ConsultationResDto;
-import com.hms.amazecare.dto.response.LabTestsResDto;
-import com.hms.amazecare.dto.response.PrescribedItemResDto;
-import com.hms.amazecare.dto.response.PrescriptionResDto;
+import com.hms.amazecare.dto.response.*;
 import com.hms.amazecare.model.*;
 
 import javax.print.Doc;
@@ -43,13 +40,54 @@ public class ConsultationMapper {
 
     }
 
-    private static PrescribedItemResDto convertPrescribedItemToDto(PrescriptionItem item) {
+    public static PrescribedItemResDto convertPrescribedItemToDto(PrescriptionItem item) {
         return new PrescribedItemResDto(
-                item.getInstructions(),
+                item.getMedicineName(),
                 item.getDosage(),
                 item.getFrequency().getLabel(),
                 item.getFoodTiming(),
                 item.getDurationDays(),
                 item.getInstructions());
+    }
+    public static DoctorConsultationResDto createDoctorConsultationResDto(
+            Appointment appointment,
+            MedicalRecord medicalRecord,
+            Prescription prescription,
+            List<PrescriptionItem> prescribedItems,
+            List<LabResult> labResults) {
+
+        Patient patient = appointment.getPatient();
+
+        PrescriptionResDto prescriptionResDto = prescription == null ? null :
+                new PrescriptionResDto(
+                        prescription.getId(),
+                        prescription.getInstructions(),
+                        prescribedItems.stream()
+                                .map(ConsultationMapper::convertPrescribedItemToDto)
+                                .toList()
+                );
+
+        List<LabResultsDto> labsResultList = labResults.stream()
+                .map(list -> new LabResultsDto(
+                        list.getId(),
+                        list.getTestName(),
+                        list.getTestStatus(),
+                        list.getResultValue(),
+                        list.getResultDate()
+                ))
+                .toList();
+
+        return new DoctorConsultationResDto(
+                appointment.getId(),
+                medicalRecord.getId(),
+                patient.getFirstName() + " " + patient.getLastName(),
+                appointment.getAppointmentDate(),
+                medicalRecord.getSymptoms(),
+                medicalRecord.getPhysicalExamination(),
+                medicalRecord.getDiagnosis(),
+                medicalRecord.getTreatmentPlan(),
+                prescriptionResDto,
+                labsResultList
+        );
     }
 }

@@ -4,6 +4,7 @@ import com.hms.amazecare.dto.response.ErrorDto;
 import com.hms.amazecare.exception.AccessDeniedException;
 import com.hms.amazecare.exception.InvalidDataException;
 import com.hms.amazecare.exception.ResourceNotFoundException;
+import jakarta.el.ELException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.ErrorResponse;
@@ -15,6 +16,27 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDto> handleException(Exception e){
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDto(
+                        e.getMessage(),
+                        "Something went wrong...",
+                        LocalDateTime.now()
+                ));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorDto> handleIllegalArgumentException(IllegalArgumentException e){
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDto(
+                        e.getMessage(),
+                        "Invalid Data passed",
+                        LocalDateTime.now()
+                ));
+    }
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorDto> resourceNotFoundExceptionHandler(ResourceNotFoundException e){
         return ResponseEntity
@@ -39,6 +61,7 @@ public class GlobalExceptionHandler {
 
     }
     // exception while using @Jsonformat
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorDto> handleUnreadable(HttpMessageNotReadableException e) {
         return ResponseEntity
