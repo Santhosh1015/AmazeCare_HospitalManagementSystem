@@ -2,7 +2,7 @@ name: SonarQube
 on:
   push:
     branches:
-      - master
+      - backend
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
