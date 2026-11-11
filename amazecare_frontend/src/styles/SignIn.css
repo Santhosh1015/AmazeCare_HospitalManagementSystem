@@ -1,0 +1,25 @@
+.signin-brand {
+    background: linear-gradient(135deg, #13293A 0%, #1F6F5C 100%);
+}
+
+.signin-brand-content {
+    max-width: 440px;
+}
+
+.signin-form-wrap {
+    max-width: 420px;
+}
+
+.signin-page .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.2);
+}
+
+.signin-page .btn-primary {
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.signin-page .btn-primary:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(13, 110, 253, 0.3);
+}

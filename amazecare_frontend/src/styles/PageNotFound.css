@@ -1,0 +1,64 @@
+.notfound-page .brand-text {
+    color: var(--bs-primary);
+}
+
+.notfound-code {
+    font-size: clamp(5rem, 18vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #13293A 0%, #2F8F78 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-bs-theme="dark"] .notfound-code {
+    background: linear-gradient(135deg, #7FD1B9 0%, #4FB89C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.notfound-heart {
+    -webkit-text-fill-color: var(--bs-primary);
+    color: var(--bs-primary);
+    display: inline-block;
+    animation: beat 1.4s ease-in-out infinite;
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    15%      { transform: scale(1.18); }
+    30%      { transform: scale(1); }
+    45%      { transform: scale(1.12); }
+}
+
+.notfound-ecg {
+    width: 100%;
+    max-width: 380px;
+    height: 60px;
+    margin-top: 0.5rem;
+}
+
+.notfound-ecg polyline {
+    fill: none;
+    stroke: var(--bs-primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: draw 2.4s linear infinite;
+}
+
+@keyframes draw {
+    to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .notfound-heart,
+    .notfound-ecg polyline {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+}
